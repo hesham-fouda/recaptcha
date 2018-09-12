@@ -1,12 +1,12 @@
 {
-    "name": "albertcht/invisible-recaptcha",
+    "name": "etchfoda/recaptcha",
     "description": "Invisible reCAPTCHA For Laravel.",
     "keywords": ["recaptcha", "no-captcha", "captcha", "invisible", "invisible-recaptcha", "laravel", "laravel5", "php"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Albert Chen",
-            "homepage": "https://www.albert-chen.com"
+            "name": "EtchFoda",
+            "homepage": "https://www.etchfoda.com"
         }
     ],
     "require": {
@@ -20,13 +20,13 @@
     },
     "autoload": {
         "psr-4": {
-            "AlbertCht\\InvisibleReCaptcha\\": "src/"
+            "EtchFoda\\InvisibleReCaptcha\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "AlbertCht\\InvisibleReCaptcha\\InvisibleReCaptchaServiceProvider"
+                "EtchFoda\\InvisibleReCaptcha\\InvisibleReCaptchaServiceProvider"
             ]
         }
     }

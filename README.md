@@ -29,7 +29,7 @@ composer require albertcht/invisible-recaptcha
 Add ServiceProvider to the providers array in `app/config/app.php`.
 
 ```
-AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
+EtchFoda\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
 ```
 
 > It also supports package discovery for Laravel 5.5.
@@ -117,7 +117,7 @@ $config['recaptcha.options'] = [
 
 In controller, use:
 ```php
-$data['captcha'] = new \AlbertCht\InvisibleReCaptcha\InvisibleReCaptcha(
+$data['captcha'] = new \EtchFoda\InvisibleReCaptcha\InvisibleReCaptcha(
     $this->config->item('recaptcha.sitekey'),
     $this->config->item('recaptcha.secret'),
     $this->config->item('recaptcha.options'),
@@ -152,7 +152,7 @@ $options [
     'timeout' => 5,
     'debug' => false
 ];
-$captcha = new \AlbertCht\InvisibleReCaptcha\InvisibleReCaptcha($siteKey, $secretKey, $options);
+$captcha = new \EtchFoda\InvisibleReCaptcha\InvisibleReCaptcha($siteKey, $secretKey, $options);
 
 // you can override single option config like this
 $captcha->setOption('debug', true);

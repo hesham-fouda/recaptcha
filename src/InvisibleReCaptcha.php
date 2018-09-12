@@ -1,6 +1,6 @@
 <?php
 
-namespace AlbertCht\InvisibleReCaptcha;
+namespace EtchFoda\InvisibleReCaptcha;
 
 use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Client;
