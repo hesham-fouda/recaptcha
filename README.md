@@ -19,7 +19,7 @@ In reCAPTCHA v2, users need to click the button: "I'm not a robot" to prove they
 ## Installation
 
 ```
-composer require albertcht/invisible-recaptcha
+composer require etchfoda/recaptcha
 ```
 
 ## Laravel 5
@@ -69,19 +69,19 @@ Before you render the captcha, please keep those notices in mind:
 ##### Display reCAPTCHA in Your View
 
 ```php
-{!! app('captcha')->render(); !!}
+{!! app('reCaptcha')->render(); !!}
 
 // or you can use this in blade
-@captcha
+@reCaptcha
 ```
 
 With custom language support:
 
 ```php
-{!! app('captcha')->render('en'); !!}
+{!! app('reCaptcha')->render('en'); !!}
 
 // or you can use this in blade
-@captcha('en')
+@reCaptcha('en')
 ```
 
 ##### Validation
@@ -90,7 +90,7 @@ Add `'g-recaptcha-response' => 'required|captcha'` to rules array.
 
 ```php
 $validate = Validator::make(Input::all(), [
-    'g-recaptcha-response' => 'required|captcha'
+    'g-recaptcha-response' => 'required|reCaptcha'
 ]);
 
 ```
@@ -104,10 +104,10 @@ $config['composer_autoload'] = TRUE;
 
 add lines in application/config/config.php :
 ```php
-$config['recaptcha.sitekey'] = 'sitekey'; 
-$config['recaptcha.secret'] = 'secretkey';
+$config['reCaptcha.sitekey'] = 'sitekey'; 
+$config['reCaptcha.secret'] = 'secretkey';
 // optional
-$config['recaptcha.options'] = [
+$config['reCaptcha.options'] = [
     'hideBadge' => false,
     'dataBadge' => 'bottomright',
     'timeout' => 5,
@@ -117,21 +117,21 @@ $config['recaptcha.options'] = [
 
 In controller, use:
 ```php
-$data['captcha'] = new \EtchFoda\InvisibleReCaptcha\InvisibleReCaptcha(
-    $this->config->item('recaptcha.sitekey'),
-    $this->config->item('recaptcha.secret'),
-    $this->config->item('recaptcha.options'),
+$data['reCaptcha'] = new \EtchFoda\InvisibleReCaptcha\InvisibleReCaptcha(
+    $this->config->item('reCaptcha.sitekey'),
+    $this->config->item('reCaptcha.secret'),
+    $this->config->item('reCaptcha.options'),
 );
 ```
 
 In view, in your form:
 ```php
-<?php echo $captcha->render(); ?>
+<?php echo $reCaptcha->render(); ?>
 ```
 
 Then back in your controller you can verify it:
 ```php
-$captcha->verifyResponse($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+$reCaptcha->verifyResponse($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 ```
 
 ## Without Laravel or CodeIgniter
@@ -152,20 +152,20 @@ $options [
     'timeout' => 5,
     'debug' => false
 ];
-$captcha = new \EtchFoda\InvisibleReCaptcha\InvisibleReCaptcha($siteKey, $secretKey, $options);
+$reCaptcha = new \EtchFoda\InvisibleReCaptcha\InvisibleReCaptcha($siteKey, $secretKey, $options);
 
 // you can override single option config like this
-$captcha->setOption('debug', true);
+$reCaptcha->setOption('debug', true);
 
 if (!empty($_POST)) {
-    var_dump($captcha->verifyResponse($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']));
+    var_dump($reCaptcha->verifyResponse($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']));
     exit();
 }
 
 ?>
 
 <form action="?" method="POST">
-    <?php echo $captcha->render(); ?>
+    <?php echo $reCaptcha->render(); ?>
     <button type="submit">Submit</button>
 </form>
 ```
@@ -218,14 +218,6 @@ _submitEvent = function() {
     });
 };
 ```
-## Example Repository
-Repo: https://github.com/albertcht/invisible-recaptcha-example
-
-This repo demonstrates how to use this package with ajax way.
-
-## Showcases
-
-* [Laravel Boilerplate](https://github.com/Labs64/laravel-boilerplate)
 
 ## Credits 
 

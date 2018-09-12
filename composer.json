@@ -29,5 +29,10 @@
                 "EtchFoda\\InvisibleReCaptcha\\InvisibleReCaptchaServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "test": [
+            "phpunit"
+        ]
     }
 }
