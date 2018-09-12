@@ -15,8 +15,8 @@ class InvisibleReCaptchaServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->bootConfig();
-        $this->app['validator']->extend('captcha', function ($attribute, $value) {
-            return $this->app['captcha']->verifyResponse($value, $this->app['request']->getClientIp());
+        $this->app['validator']->extend('reCaptcha', function ($attribute, $value) {
+            return $this->app['reCaptcha']->verifyResponse($value, $this->app['request']->getClientIp());
         });
     }
 
@@ -27,11 +27,11 @@ class InvisibleReCaptchaServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('captcha', function ($app) {
+        $this->app->singleton('reCaptcha', function ($app) {
             return new InvisibleReCaptcha(
-                $app['config']['captcha.siteKey'],
-                $app['config']['captcha.secretKey'],
-                $app['config']['captcha.options']
+                $app['config']['reCaptcha.siteKey'],
+                $app['config']['reCaptcha.secretKey'],
+                $app['config']['reCaptcha.options']
             );
         });
 
@@ -49,7 +49,7 @@ class InvisibleReCaptchaServiceProvider extends ServiceProvider
     {
         $path = __DIR__.'/config/captcha.php';
 
-        $this->mergeConfigFrom($path, 'captcha');
+        $this->mergeConfigFrom($path, 'reCaptcha');
 
         if (function_exists('config_path')) {
             $this->publishes([$path => config_path('captcha.php')]);
@@ -63,7 +63,7 @@ class InvisibleReCaptchaServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['captcha'];
+        return ['reCaptcha'];
     }
 
     /**
@@ -72,8 +72,8 @@ class InvisibleReCaptchaServiceProvider extends ServiceProvider
      */
     public function addBladeDirective(BladeCompiler $blade)
     {
-        $blade->directive('captcha', function ($lang) {
-            return "<?php echo app('captcha')->render({$lang}); ?>";
+        $blade->directive('reCaptcha', function ($lang) {
+            return "<?php echo app('reCaptcha')->render({$lang}); ?>";
         });
     }
 }

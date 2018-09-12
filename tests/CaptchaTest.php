@@ -69,7 +69,7 @@ class CaptchaTest extends TestCase
     public function testBladeDirective()
     {
         $app = Container::getInstance();
-        $app->instance('captcha', $this->captcha);
+        $app->instance('reCaptcha', $this->captcha);
 
         $blade = new BladeCompiler(
             $this->getMockBuilder(Filesystem::class)->disableOriginalConstructor()->getMock(),
@@ -81,7 +81,7 @@ class CaptchaTest extends TestCase
 
         $result = $blade->compileString('@captcha()');
         $this->assertEquals(
-            "<?php echo app('captcha')->render(); ?>",
+            "<?php echo app('reCaptcha')->render(); ?>",
             $result
         );
     }
